@@ -153,7 +153,7 @@ include::{sourcesdir}/sample01/app.c[]
 ** エディタのタイトルやタブのタイトルが追従して変更される。
 
 .図の名前を変更する
-image::GSW-20190930-002210_0.png[{three-quarters-width}]
+image::images/GSW-20190930-002210_0.png[{three-quarters-width}]
 
 ==== sample01のクラス図を作成しなさい
 
@@ -176,7 +176,7 @@ image::GSW-20190930-002210_0.png[{three-quarters-width}]
 . 作成したクラス図を `sample01_class_01.png` として `images` ディレクトリに保存する（ダミー画像ファイルになっているので、置き換える）
 
 .`sample01` のクラス図（保存できたら置き換わる）
-image::sample01_class_01.png[{full-width}]
+image::images/sample01_class_01.png[{full-width}]
 
 
 ==== 編集結果をコミットする
@@ -284,7 +284,7 @@ include::{sourcesdir}/sample04/app.c[lines=65..135]
 
 [[traslation_rule_guide]]
 .クラス図とコードの対応づけ
-image::traslation_rule_guide.png[{full-width}]
+image::images/traslation_rule_guide.png[{full-width}]
 
 
 === 【演習】astah*でsample04のクラス図を作る
@@ -341,7 +341,7 @@ image::traslation_rule_guide.png[{full-width}]
 
 [[sample04_class_01]]
 .`sample04` のクラス図（その1）（保存できたら置き換わる）
-image::sample04_class_01.png[{full-width}]
+image::images/sample04_class_01.png[{full-width}]
 
 
 ==== 編集結果をコミットする
@@ -360,7 +360,7 @@ image::sample04_class_01.png[{full-width}]
 
 [[sample04_class_02]]
 .`sample04` のクラス図（その2）（保存できたら置き換わる）
-image::sample04_class_02.png[{full-width}]
+image::images/sample04_class_02.png[{full-width}]
 
 
 ==== 編集結果をプッシュする
@@ -409,11 +409,11 @@ image::sample04_class_02.png[{full-width}]
 
 [[add_stm_diagram]]
 .`porter` クラスにステートマシン図を追加する
-image::GSW-20191021-102644.png["add_stm_diagram", {half-width}]]
+image::images/GSW-20191021-102644.png["add_stm_diagram", {half-width}]]
 
 [[add_stm_name]]
 .ステートマシン図に名前をつける
-image::GSW-20191021-102135.png["add_stm_name", {half-width}]]
+image::images/GSW-20191021-102135.png["add_stm_name", {half-width}]]
 
 
 ==== ステートマシン図に状態・状態遷移・アクションを追加する
@@ -432,7 +432,7 @@ image::GSW-20191021-102135.png["add_stm_name", {half-width}]]
 ** 最後の状態は、イベントを待たないし、継続する処理もないので、「完了、終了、到着」といった名前をつける。
 
 .作成中のステートマシン図
-image::GSW-20191021-142110.png[{three-quarters-width}]
+image::images/GSW-20191021-142110.png[{three-quarters-width}]
 
 
 ==== 状態名をつける
@@ -445,7 +445,7 @@ image::GSW-20191021-142110.png[{three-quarters-width}]
 作成したクラス図を `sample04_stm_01.png` として `images` ディレクトリに保存しなさい。
 
 .`sample04` のステートマシン図（保存できたら置き換わる）
-image::sample04_stms_01.png[{full-width}]
+image::images/sample04_stms_01.png[{full-width}]
 
 
 ==== 編集結果をコミットする
@@ -468,7 +468,7 @@ image::sample04_stms_01.png[{full-width}]
 
 [[layered_arch_01]]
 .モデル図を作成した結果発見した階層化アーキテクチャ
-image::layered_arch.png[{three-quarters-width}]
+image::images/layered_arch.png[{three-quarters-width}]
 
 
 === タイマーとホーン
@@ -487,14 +487,14 @@ image::layered_arch.png[{three-quarters-width}]
 
 
 .タイマークラス
-image::timer.png[{one-quarters-width}]
+image::images/timer.png[{one-quarters-width}]
 
 タイマークラスの動作について、説明を聞いて実行する。
 
 タイマーの他に、あらかじめ決まった音（到着音、確認音、警告音）を鳴らすホーンクラスも用意している。
 
 .ホーンクラス
-image::horn.png[{one-quarters-width}]
+image::images/horn.png[{one-quarters-width}]
 
 NOTE: 簡便なクラスなので、それぞれの音を再生中は他の動作を変えられないことに注意する。
 
@@ -504,7 +504,7 @@ NOTE: 簡便なクラスなので、それぞれの音を再生中は他の動�
 
 [[timer_horn_usage]]
 .timerとhornの利用例
-image::timer_horn_usage02.png[{full-width}]
+image::images/timer_horn_usage02.png[{full-width}]
 
 === 【演習】配達先で到着を鳴らす
 
@@ -535,7 +535,7 @@ NOTE: おおむね、<<timer_horn_usage>> を真似れば実現できるはず�
 
 [[sample04_01_class_01]]
 .`sample04-01` のクラス図（その1）（保存できたら置き換わる）
-image::sample04-01_class_01.png[{full-width}]
+image::images/sample04-01_class_01.png[{full-width}]
 
 
 ==== 編集結果をコミットする
@@ -561,7 +561,7 @@ NOTE: `git log` コマンドを使えば、履歴にコミット結果が追加�
 
 [[sample04_01_stm_01]]
 .`sample04-01` のステートマシン図（保存できたら置き換わる）
-image::sample04-01_stms_01.png[{full-width}]
+image::images/sample04-01_stms_01.png[{full-width}]
 
 
 
@@ -606,7 +606,7 @@ NOTE: おおむね、<<timer_horn_usage>> を真似れば実現できるはず�
 
 [[sample04_02_class_01]]
 .`sample04-02` のクラス図（保存できたら置き換わる）
-image::sample04-02_class_01.png[{full-width}]
+image::images/sample04-02_class_01.png[{full-width}]
 
 
 ==== 編集結果をコミットする
@@ -631,7 +631,7 @@ NOTE: `git log` コマンドを使えば、履歴にコミット結果が追加�
 
 [[sample04_02_stm_01]]
 .`sample04-02` のステートマシン図（保存できたら置き換わる）
-image::sample04-02_stms_01.png[{full-width}]
+image::images/sample04-02_stms_01.png[{full-width}]
 
 
 
