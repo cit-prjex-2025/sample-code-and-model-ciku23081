@@ -135,16 +135,17 @@ void porter_transport(void) {
 switch(p_state){
   case P_ARRIVED:
   if(p_entry){
-  p_entry=false;
-  horn_confirmation();
-}
-if(true){
-  p_state=P_WAIT_FOR_LOADING;
-  p_entry=true;
-}
-if(p_entry){
-  //exit
-}
+    p_entry=false;
+    horn_confirmation();
+  }
+  if(true){
+    p_state=P_WAIT_FOR_LOADING;
+    p_entry=true;
+  }
+  if(p_entry){
+    //exit
+  }
+  break;
 }
 
 void main_task(intptr_t unused) {
