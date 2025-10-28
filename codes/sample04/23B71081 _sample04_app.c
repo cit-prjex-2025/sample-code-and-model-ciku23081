@@ -133,7 +133,7 @@ void porter_transport(void) {
   }
 }
 switch(p_state){
-  case P_TIMEDOUT:
+  case P_ARRIVED:
   if(p_entry){
   p_entry=false;
   horn_confirmation();
