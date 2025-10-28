@@ -132,7 +132,9 @@ void porter_transport(void) {
     break;
   }
 }
-if(p_entry){
+switch(p_state){
+  case P_TIMEDOUT:
+  if(p_entry){
   p_entry=false;
   horn_confirmation();
 }
@@ -142,6 +144,7 @@ if(true){
 }
 if(p_entry){
   //exit
+}
 }
 
 void main_task(intptr_t unused) {
