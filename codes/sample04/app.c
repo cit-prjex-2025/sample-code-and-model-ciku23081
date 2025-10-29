@@ -1,5 +1,7 @@
 #include "app.h"
 #include "util.h"
+#include "horn.h"
+#include "timer.h"
 
 const int bumper_sensor = EV3_PORT_1;
 const int linemon_sensor = EV3_PORT_3;
@@ -64,7 +66,7 @@ void tracer_stop(void) {
 
 typedef enum { // <1>
   P_WAIT_FOR_LOADING, P_TRANSPORTING,
-  P_WAIT_FOR_UNLOADING, P_RETURNING, P_ARRIVED
+  P_WAIT_FOR_UNLOADING, P_RETURNING, P_ARRIVED,P_TIMEDOUT,P_NIKUDURE
 } porter_state; // <2>
 
 porter_state p_state = P_WAIT_FOR_LOADING; // <3>
@@ -77,14 +79,29 @@ void porter_transport(void) {
   case P_WAIT_FOR_LOADING: // <2>
     if( p_entry ) { // <3>
       p_entry = false;
+      timer_start(5000*1000);
     }
     // <4>
     if( carrier_cargo_is_loaded() ) { // <5>
       p_state = P_TRANSPORTING; // <6>
       p_entry = true; // <7>
     }
+    if(timer_is_timedout()){
+      p_state=P_TIMEDOUT;
+      p_entry=true;
+    }
     if( p_entry ) { // <8>
-      // exit
+      timer_stop();
+    }
+    break;
+    case P_TIMEDOUT:
+    if( p_entry ) { // <3>
+      p_entry = false;
+      horn_confirmation();
+      if( true) { // <5>
+      p_state = P_WAIT_FOR_LOADING; // <6>
+      p_entry = true; // <7>
+    }
     }
     break;
   case P_TRANSPORTING:
@@ -92,6 +109,10 @@ void porter_transport(void) {
       p_entry = false;
     }
     tracer_run();
+    if( !carrier_cargo_is_loaded() ) { // <5>
+      p_state = P_NIKUDURE; // <6>
+      p_entry = true;
+    }
     if( wall_detector_is_detected() ) {
       p_state = P_WAIT_FOR_UNLOADING;
       p_entry = true;
@@ -100,9 +121,28 @@ void porter_transport(void) {
       tracer_stop();
     }
     break;
+    case P_NIKUDURE:
+    if( p_entry ) {
+      p_entry = false;
+      tracer_stop();
+      timer_start(5000*1000);
+      //horn_confirmation();
+      horn_warning();
+    }
+    if(timer_is_timedout()){
+      p_state=P_NIKUDURE;
+      p_entry=true;
+    }
+    if( carrier_cargo_is_loaded() ) { // <5>
+      p_state = P_TRANSPORTING; // <6>
+      p_entry = true;
+    }
+
+    break;
   case P_WAIT_FOR_UNLOADING:
     if( p_entry ) {
       p_entry = false;
+      horn_confirmation();
     }
     if(! carrier_cargo_is_loaded() ) {
       p_state = P_RETURNING;
@@ -127,6 +167,9 @@ void porter_transport(void) {
     }
     break;
   case P_ARRIVED:
+  if(p_entry){
+    p_entry=false;
+  }
     break;
   default:
     break;
@@ -141,6 +184,7 @@ void main_task(intptr_t unused) {
     ev3_motor_config(left_motor, LARGE_MOTOR);
     ev3_motor_config(right_motor, LARGE_MOTOR);
     ev3_sensor_config(walldetector_sensor, ULTRASONIC_SENSOR); // <1>
+    tslp_tsk(5000 * 1000);
     ev3_sensor_config(linemon_sensor, COLOR_SENSOR);
     ev3_sensor_config(bumper_sensor, TOUCH_SENSOR);
     ev3_sensor_config(carrier_sensor, TOUCH_SENSOR); // <2>
