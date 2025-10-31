@@ -124,7 +124,7 @@ void porter_transport(void) {
     case P_NIKUDURE:
     if( p_entry ) {
       p_entry = false;
-      tracer_stop();
+      //tracer_stop();
       timer_start(5000*1000);
       //horn_confirmation();
       horn_warning();
@@ -142,7 +142,7 @@ void porter_transport(void) {
   case P_WAIT_FOR_UNLOADING:
     if( p_entry ) {
       p_entry = false;
-      horn_confirmation();
+      horn_arrived();
     }
     if(! carrier_cargo_is_loaded() ) {
       p_state = P_RETURNING;
